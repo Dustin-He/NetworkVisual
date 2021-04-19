@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'Khand-Regular';
+    src: url('./font/Khand-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'KAITI';
+    src: url(./font/KAITI.ttf);
+}
+
+@font-face {
+    font-family: 'PingFangSC-Regular';
+    src: url(./font/PingFang-SC-Regular.ttf);
+}
+
+@media only screen and (min-width: 1080px) {
+    html {
+        font-size: 15px !important;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    html {
+        font-size: 15px !important;
+    }
+}
+
+
+html,body {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    overflow: hidden;
+    margin: 0;
+}
+
+#mainwindow {
+    width: 100%; 
+    height: 100%;  
+    /* background-color: rgba(240, 240, 240, 0.9); */
+    background-color: rgba(240, 240, 240, 0);
+    overflow: hidden;
+}
+
+.title {
+    font-size: 1.5rem;
+    text-anchor: middle;
+}
+
+#party_info{
+    float: left;
+    width: 50%;
+    height: 50%;
+    /* background-color: antiquewhite; */
+    overflow: hidden;
+}
+
+#year_tips{
+    position: absolute;
+    float: left;
+    left: 20%;
+    top: 25px;
+    width: 30%;
+    height: auto;
+    overflow: hidden;
+    font-size: 1.2rem;
+}
+
+#switch_button{
+    position: absolute;
+    float: left;
+    left: 30%;
+    top: 25px;
+    width: 20%;
+    height: auto;
+    overflow: hidden;
+}
+
+#tooltip{
+    position: absolute;
+    text-align: left;
+    background-color: rgba(250, 250, 250, 1);
+    border: 1px solid rgb(200,200,200);
+    border-radius:5px;
+    font-size:0.8rem;
+    padding:4px;
+    color:black;
+    z-index: 3;
+    visibility: hidden; 
+    opacity: 0.8;
+}
+
+#J_container_002{
+    float: right;
+    width: 50%;
+    height: 100%;
+    /* background-color: skyblue; */
+    overflow: hidden;
+}
+
+
+#range{
+    position: absolute;
+    float: left;
+    left: 55%;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+#pict1{
+    position: absolute;
+    
+}
+#pict2{
+    position: absolute;
+    left: 55%;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+}
