@@ -4,22 +4,60 @@
 // let light_cm_data = null;
 // let real_data = null;
 // let flt_data = null;
-const color_set = ["#E69F00", "#D55E00", "#009E73", "#999999", "#56B4E9", "#2267A8", "#1E2262"];
+const color_set = ["#56B4E9", "#009E73", "#999999", "#1E2262", "#E69F00", "#2267A8", "#D55E00"];
 let d2 = null;
 let gdata;
+let width = document.body.clientWidth;
+let height = document.body.clientHeight;
 (function main() {
 
     return () => {
         read_data().then((data) => {
             // console.log(estimated_data);
-            gdata = data;
+            // gdata = data;
             process_data(data)
-            console.log(data)
-            let d1 = draw_pict1(data);
-            d1()
-            d2 = draw_pict2(data)
-            d2(data)
+            gdata = data;
+            // data = data.filter((ele, index, array) => {
+            //     if (ele["ARE"] > 3) {
+            //         return true;
+            //     }
+            //     return false;
+            // })
+            // console.log(data)
 
+
+            // console.log(data)
+            draw_scatter(data)
+            draw_hist(data)
+
+            d3.select("#maxSizeText")
+                .on("input", function () {
+                    if (this.value === "") {
+                        draw_scatter(data);
+                    } else {
+                        draw_scatter(data, parseInt(this.value))
+                    }
+                })
+
+            d3.select("#areText")
+                .on("input", function () {
+                    if (this.value === "") {
+                        // draw_scatter(data);
+                        let new_data = gdata;
+                        draw_scatter(new_data);
+                        draw_hist(new_data);
+                    } else {
+                        let ARE = parseFloat(this.value);
+                        let new_data = gdata.filter((ele) => {
+                            if (ele["ARE"] > ARE) {
+                                return true;
+                            }
+                            return false;
+                        })
+                        draw_scatter(new_data);
+                        draw_hist(new_data);
+                    }
+                })
 
 
         });

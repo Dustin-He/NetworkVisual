@@ -109,12 +109,14 @@ html,body {
 }
 #pict1{
     position: absolute;
+    overflow:hidden;
     
 }
 #pict2{
     position: absolute;
     left: 55%;
-    overflow: hidden;
+    overflow:hidden;
     width: auto;
     height: auto;
+
 }
