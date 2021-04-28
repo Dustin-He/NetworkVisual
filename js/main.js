@@ -9,6 +9,7 @@ let d2 = null;
 let gdata;
 let width = document.body.clientWidth;
 let height = document.body.clientHeight;
+let filtered_data;
 (function main() {
 
     return () => {
@@ -17,6 +18,7 @@ let height = document.body.clientHeight;
             // gdata = data;
             process_data(data)
             gdata = data;
+            filtered_data = data;
             // data = data.filter((ele, index, array) => {
             //     if (ele["ARE"] > 3) {
             //         return true;
@@ -33,9 +35,9 @@ let height = document.body.clientHeight;
             d3.select("#maxSizeText")
                 .on("input", function () {
                     if (this.value === "") {
-                        draw_scatter(data);
+                        draw_scatter(filtered_data);
                     } else {
-                        draw_scatter(data, parseInt(this.value))
+                        draw_scatter(filtered_data, parseInt(this.value))
                     }
                 })
 
@@ -48,14 +50,14 @@ let height = document.body.clientHeight;
                         draw_hist(new_data);
                     } else {
                         let ARE = parseFloat(this.value);
-                        let new_data = gdata.filter((ele) => {
+                        filtered_data = gdata.filter((ele) => {
                             if (ele["ARE"] > ARE) {
                                 return true;
                             }
                             return false;
                         })
-                        draw_scatter(new_data);
-                        draw_hist(new_data);
+                        draw_scatter(filtered_data);
+                        draw_hist(filtered_data);
                     }
                 })
 
@@ -126,13 +128,13 @@ let height = document.body.clientHeight;
             let counter = 0;
             let hist_num = ele["realAns"].length;
             for (let i = 0; i < hist_num; ++i) {
-                ARE = Math.abs(ele["realAns"][i] - ele["estiAns"][i]);
                 if (ele["realAns"][i] != 0) {
+                    ARE += Math.abs(ele["realAns"][i] - ele["estiAns"][i]) / ele["realAns"][i];
                     ++counter;
                 }
                 size += ele["realAns"][i];
             }
-            ARE /= hist_num;
+            ARE /= counter;
             ele["ARE"] = ARE;
             ele["size"] = size;
             ele["counter"] = counter;

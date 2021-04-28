@@ -39,25 +39,31 @@ function draw_pict1() {
         .attr("transform", `translate(${config.margin.left}, ${0})`)
     const g_circle = svg.append("g").attr("id", "g_circle")
     const g_text = svg.append("g")
+        .append("text")
+        .attr("x", config.width / 2)
+        .attr("y", config.margin.top / 2)
 
     let scale_x = null;
     let scale_y = null;
+    let mmax_size = 0;
     return (data, max_size = 0) => {
         // const svg
         draw_axis(data, max_size)
         draw_circle(data)
         g_text
-            .append("text")
-            .attr("x", config.width / 2)
-            .attr("y", config.margin.top / 2)
             .text("flow num: " + data.length)
     }
     function draw_axis(data, max_size) {
         if (max_size != 0) {
 
             max_size = d3.min([max_size, d3.max(data.map(d => d["size"]))]);
+            mmax_size = max_size;
         } else {
-            max_size = d3.max(data.map(d => d["size"]))
+            if (mmax_size === 0) {
+                mmax_size = max_size = d3.max(data.map(d => d["size"]));
+            } else {
+                max_size = mmax_size;
+            }
         }
         scale_x = d3.scaleLinear()
             .domain([0, d3.max(data.map(d => d["counter"]))])
